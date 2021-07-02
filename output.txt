@@ -1,0 +1,24 @@
+Linear Search:
+5: 4
+4: -1
+3: 2
+
+Binary Search:
+3: 1
+4: -1
+5: 2
+
+Ternary Search:
+3: 1
+4: -1
+5: 2
+
+Jump Search:
+3: 1
+4: -1
+5: 2
+
+Exponential Search:
+3: 1
+4: -1
+5: 2
