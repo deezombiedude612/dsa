@@ -9,30 +9,30 @@ using namespace std;
  * @brief Node structure to be used in SLL
  */
 struct Node {
-	int item;
-	Node *next;
+  int item;
+  Node *next;
 };
 
 class SLL {
  private:
-	Node *head;
-	bool isEmpty();
+  Node *head;
+  bool isEmpty();
 
  public:
-	SLL();
-	SLL(const int item);
-	~SLL();
-	unsigned int getSize();
+  SLL();
+  SLL(const int item);
+  ~SLL();
+  unsigned int getSize();
 
-	void addHead(int newItem);
-	void addTail(int newItem);
-	void addNodeAt(int item, unsigned int index);
-	void removeHead();
-	void removeTail();
-	void removeNodeAt(unsigned int index);
-	void displayList();
-	int getIndexOf(int searchedItem);
-	bool contains(int searchedItem);
+  void addHead(int newItem);
+  void addTail(int newItem);
+  void addNodeAt(int item, unsigned int index);
+  void removeHead();
+  void removeTail();
+  void removeNodeAt(unsigned int index);
+  void displayList();
+  int getIndexOf(int searchedItem);
+  bool contains(int searchedItem);
 };
 
 /**
@@ -42,21 +42,21 @@ class SLL {
  * @return false 
  */
 bool SLL::isEmpty() {
-	return head == NULL;
+  return head == NULL;
 }
 
 SLL::SLL() {
-	head = NULL;
+  head = NULL;
 }
 
 SLL::SLL(const int item) {
-	addHead(item);
+  addHead(item);
 }
 
 SLL::~SLL() {
-	while (getSize() > 0) removeHead();
-	head = NULL;
-	delete head;
+  while (getSize() > 0) removeHead();
+  head = NULL;
+  delete head;
 }
 
 /**
@@ -65,16 +65,16 @@ SLL::~SLL() {
  * @return unsigned int 
  */
 unsigned int SLL::getSize() {
-	if (isEmpty()) return 0;
+  if (isEmpty()) return 0;
 
-	int numNodes;
-	Node *cur = head;
-	for (numNodes = 0; cur; cur = cur->next) numNodes++;
+  int numNodes;
+  Node *cur = head;
+  for (numNodes = 0; cur; cur = cur->next) numNodes++;
 
-	cur = NULL;
-	delete cur;
+  cur = NULL;
+  delete cur;
 
-	return numNodes;
+  return numNodes;
 }
 
 /**
@@ -83,20 +83,20 @@ unsigned int SLL::getSize() {
  * @param newItem 
  */
 void SLL::addHead(int newItem) {
-	Node *newHead = new Node;
-	newHead->item = newItem;
+  Node *newHead = new Node;
+  newHead->item = newItem;
 
-	if (isEmpty())
-		newHead->next = NULL;
-	else
-		newHead->next = head;
+  if (isEmpty())
+    newHead->next = NULL;
+  else
+    newHead->next = head;
 
-	head = newHead;
+  head = newHead;
 
-	newHead = NULL;
-	delete newHead;
+  newHead = NULL;
+  delete newHead;
 
-	cout << "\nInserted new head to SLL: " << newItem << endl;
+  cout << "\nInserted new head to SLL: " << newItem << endl;
 }
 
 /**
@@ -105,27 +105,27 @@ void SLL::addHead(int newItem) {
  * @param newItem - New item to be added into SLL
  */
 void SLL::addTail(int newItem) {
-	if (isEmpty())
-		addHead(newItem);
-	else {
-		Node *newNode = new Node;
-		newNode->item = newItem;
-		newNode->next = NULL;
+  if (isEmpty())
+    addHead(newItem);
+  else {
+    Node *newNode = new Node;
+    newNode->item = newItem;
+    newNode->next = NULL;
 
-		Node *cur = head;
-		while (cur->next)
-			cur = cur->next;
+    Node *cur = head;
+    while (cur->next)
+      cur = cur->next;
 
-		cur->next = newNode;
+    cur->next = newNode;
 
-		cur = NULL;
-		delete cur;
+    cur = NULL;
+    delete cur;
 
-		newNode = NULL;
-		delete newNode;
+    newNode = NULL;
+    delete newNode;
 
-		cout << "\nInserted new tail to SLL: " << newItem << endl;
-	}
+    cout << "\nInserted new tail to SLL: " << newItem << endl;
+  }
 }
 
 /**
@@ -135,64 +135,64 @@ void SLL::addTail(int newItem) {
  * @param index - Position in SLL where new item is to occupy
  */
 void SLL::addNodeAt(int newItem, unsigned int index) {
-	if (index == 0)
-		addHead(newItem);
-	else if (index < getSize()) {
-		Node *newNode = new Node;
-		newNode->item = newItem;
+  if (index == 0)
+    addHead(newItem);
+  else if (index < getSize()) {
+    Node *newNode = new Node;
+    newNode->item = newItem;
 
-		Node *cur = head;
-		for (unsigned int i = 1; i < index; ++i) cur = cur->next;
-		newNode->next = cur->next;
-		cur->next = newNode;
+    Node *cur = head;
+    for (unsigned int i = 1; i < index; ++i) cur = cur->next;
+    newNode->next = cur->next;
+    cur->next = newNode;
 
-		cur = NULL;
-		delete cur;
+    cur = NULL;
+    delete cur;
 
-		cout << "\nInserted new Node to SLL: " << newItem << " (at index " << index << ")\n";
+    cout << "\nInserted new Node to SLL: " << newItem << " (at index " << index << ")\n";
 
-	} else
-		cout << "Illegal array index!\n";
+  } else
+    cout << "Illegal array index!\n";
 }
 
 /**
  * @brief Removes current head Node in SLL
  */
 void SLL::removeHead() {
-	if (isEmpty())
-		cout << "No more nodes to delete!\n";
-	else if (!(head->next)) {
-		cout << "\nDeleting head from SLL: " << head->item << endl;
-		head = NULL;
-		delete head;
+  if (isEmpty())
+    cout << "No more nodes to delete!\n";
+  else if (!(head->next)) {
+    cout << "\nDeleting head from SLL: " << head->item << endl;
+    head = NULL;
+    delete head;
 
-		cout << "SLL is now empty.\n";
-	} else {
-		Node *oldHead = head;
-		head = oldHead->next;
+    cout << "SLL is now empty.\n";
+  } else {
+    Node *oldHead = head;
+    head = oldHead->next;
 
-		cout << "\nDeleting head from SLL: " << oldHead->item << endl;
-		delete oldHead;
-		oldHead = NULL;
-	}
+    cout << "\nDeleting head from SLL: " << oldHead->item << endl;
+    delete oldHead;
+    oldHead = NULL;
+  }
 }
 
 /**
  * @brief Removes current tail Node in SLL
  */
 void SLL::removeTail() {
-	if (isEmpty())
-		cout << "No more nodes to delete!\n";
-	else if (!(head->next))
-		removeHead();
-	else {
-		Node *cur = head;
-		while (cur->next->next) cur = cur->next;
+  if (isEmpty())
+    cout << "No more nodes to delete!\n";
+  else if (!(head->next))
+    removeHead();
+  else {
+    Node *cur = head;
+    while (cur->next->next) cur = cur->next;
 
-		cout << "\nDeleting tail from SLL: " << cur->next->item << endl;
-		delete cur->next;
-		cur->next = NULL;
-	}
+    cout << "\nDeleting tail from SLL: " << cur->next->item << endl;
+    delete cur->next;
+    cur->next = NULL;
+  }
 }
 
 /**
@@ -201,44 +201,44 @@ void SLL::removeTail() {
  * @param index - Index in SLL whose item is to be removed
  */
 void SLL::removeNodeAt(unsigned int index) {
-	if (isEmpty())
-		cout << "No more nodes to delete!\n";
-	else if (!(head->next))
-		removeHead();
-	else if (index < getSize()) {
-		Node *cur = head;
-		for (unsigned int i = 1; i < index; ++i) cur = cur->next;
+  if (isEmpty())
+    cout << "No more nodes to delete!\n";
+  else if (!(head->next))
+    removeHead();
+  else if (index < getSize()) {
+    Node *cur = head;
+    for (unsigned int i = 1; i < index; ++i) cur = cur->next;
 
-		Node *oldNode = cur->next;
-		cur->next = oldNode->next;
+    Node *oldNode = cur->next;
+    cur->next = oldNode->next;
 
-		cout << "\nDeleting Node from SLL: " << oldNode->item << " (at index " << index << ")\n";
-		delete oldNode;
-		oldNode = NULL;
+    cout << "\nDeleting Node from SLL: " << oldNode->item << " (at index " << index << ")\n";
+    delete oldNode;
+    oldNode = NULL;
 
-		cur = NULL;
-		delete cur;
-	} else
-		cout << "Illegal array index!\n";
+    cur = NULL;
+    delete cur;
+  } else
+    cout << "Illegal array index!\n";
 }
 
 /**
  * @brief Display full list
  */
 void SLL::displayList() {
-	Node *cur = head;
-	if (isEmpty()) {
-		cout << "SLL is currently empty.\n";
-		return;
-	}
+  Node *cur = head;
+  if (isEmpty()) {
+    cout << "SLL is currently empty.\n";
+    return;
+  }
 
-	while (cur) {
-		cout << cur->item << " ";
-		cur = cur->next;
-	}
+  while (cur) {
+    cout << cur->item << " ";
+    cur = cur->next;
+  }
 
-	cout << "END\n";
-	delete cur;
+  cout << "END\n";
+  delete cur;
 }
 
 /**
@@ -251,14 +251,14 @@ void SLL::displayList() {
  * @return int 
  */
 int SLL::getIndexOf(int searchedItem) {
-	int index;
+  int index;
 
-	Node *cur = head;
-	for (index = 0; cur; index++, cur = cur->next) {
-		if (cur->item == searchedItem) return index;
-	}
+  Node *cur = head;
+  for (index = 0; cur; index++, cur = cur->next) {
+    if (cur->item == searchedItem) return index;
+  }
 
-	return -1;
+  return -1;
 }
 
 /**
@@ -269,52 +269,52 @@ int SLL::getIndexOf(int searchedItem) {
  * @return false 
  */
 bool SLL::contains(int searchedItem) {
-	return getIndexOf(searchedItem) != -1;
+  return getIndexOf(searchedItem) != -1;
 }
 
 int main(int argc, char **argv) {
-	SLL l;
-	// SLL l(0);
-	l.displayList();
-	cout << "Size: " << l.getSize() << endl;
-	l.addHead(20);
-	l.displayList();
-	cout << "Size: " << l.getSize() << endl;
-	l.addHead(10);
-	l.displayList();
-	cout << "Size: " << l.getSize() << endl;
-	l.addTail(30);
-	l.displayList();
-	cout << "Size: " << l.getSize() << endl;
-	l.addNodeAt(50, 2);
-	l.displayList();
-	cout << "Size: " << l.getSize() << endl;
-	l.addNodeAt(60, 7);
-	cout << "Size: " << l.getSize() << endl;
+  SLL l;
+  // SLL l(0);
+  l.displayList();
+  cout << "Size: " << l.getSize() << endl;
+  l.addHead(20);
+  l.displayList();
+  cout << "Size: " << l.getSize() << endl;
+  l.addHead(10);
+  l.displayList();
+  cout << "Size: " << l.getSize() << endl;
+  l.addTail(30);
+  l.displayList();
+  cout << "Size: " << l.getSize() << endl;
+  l.addNodeAt(50, 2);
+  l.displayList();
+  cout << "Size: " << l.getSize() << endl;
+  l.addNodeAt(60, 7);
+  cout << "Size: " << l.getSize() << endl;
 
-	cout << "20 in position: " << l.getIndexOf(20) << " (Found: " << l.contains(20) << ")" << endl;
-	cout << "40 in position: " << l.getIndexOf(40) << " (Found: " << l.contains(40) << ")" << endl;
+  cout << "20 in position: " << l.getIndexOf(20) << " (Found: " << l.contains(20) << ")" << endl;
+  cout << "40 in position: " << l.getIndexOf(40) << " (Found: " << l.contains(40) << ")" << endl;
 
-	l.removeHead();
-	cout << "Size: " << l.getSize() << endl;
-	l.removeTail();
-	l.displayList();
-	cout << "Size: " << l.getSize() << endl;
+  l.removeHead();
+  cout << "Size: " << l.getSize() << endl;
+  l.removeTail();
+  l.displayList();
+  cout << "Size: " << l.getSize() << endl;
 
-	l.addTail(60);
-	l.addTail(70);
-	l.addTail(80);
-	l.addTail(90);
-	l.addTail(100);
-	l.displayList();
+  l.addTail(60);
+  l.addTail(70);
+  l.addTail(80);
+  l.addTail(90);
+  l.addTail(100);
+  l.displayList();
 
-	l.addNodeAt(40, 1);
-	l.displayList();
+  l.addNodeAt(40, 1);
+  l.displayList();
 
-	l.removeNodeAt(2);
-	l.displayList();
+  l.removeNodeAt(2);
+  l.displayList();
 
-	return 0;
+  return 0;
 }
 
 #endif
