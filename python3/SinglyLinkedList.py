@@ -9,6 +9,23 @@ class SLL:
     def __init__(self):
         self.head = None
 
+    # Check if SLL is empty
+    def is_empty(self):
+        return self.head is None
+
+    # Retrieve size of SLL (number of Nodes currently in SLL)
+    def get_size(self):
+        if self.is_empty():
+            return 0
+
+        cur = self.head
+        num_nodes = 0
+        while cur is not None:
+            num_nodes += 1
+            cur = cur.next
+
+        return num_nodes
+
     # Add a new head Node in SLL
     def add_head(self, newItem):
         new_node = Node(newItem)
@@ -29,14 +46,24 @@ class SLL:
 
         cur.next = new_node
 
-    # def add_node_at(self, newItem):
-    #     new_node = Node(newItem)
+    # Add a new Node to SLL at given index
+    def add_node_at(self, newItem, index):
+        if index == 0:
+            self.add_head(newItem)
+            return
 
-    #     if self.head is None:
-    #         self.head = new_node
-    #         return
+        currentIndex = 0
+        cur = self.head
+        while currentIndex < index and cur:
+            currentIndex += 1
+            cur = cur.next
 
-    #     # insert check to see if
+        if cur is None:
+            print("Illegal array index!\n")
+        else:
+            new_node = Node(newItem)
+            new_node.next = cur.next
+            cur.next = new_node
 
     # Display full list
     def display_list(self):
@@ -52,3 +79,9 @@ if __name__ == "__main__":
     l.add_head(5)
     l.add_tail(20)
     l.display_list()
+    print("Size of SLL: ", l.get_size())
+
+    print("\nAdding 15 at position 2..")
+    l.add_node_at(15, 2)
+    l.display_list()
+    print("Size of SLL: ", l.get_size())
